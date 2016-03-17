@@ -1,0 +1,63 @@
+{
+  "name": "react-amp-layout",
+  "version": "0.1.0",
+  "description": "The AMP layout system ported to React.js as a couple of easy to use components.",
+  "main": "distribution/index.js",
+  "files": [
+    "distribution"
+  ],
+  "scripts": {
+    "clean": "rm -rf distribution",
+    "prepare": "mkdir -p distribution",
+    "build": "babel source --out-dir distribution",
+    "watch": "npm run build -- --watch",
+    "test": "ava"
+  },
+  "ava": {
+    "source": [
+      "source/**/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nerdlabs/react-amp-layout.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nerdlabs/react-amp-layout/issues"
+  },
+  "homepage": "https://github.com/nerdlabs/react-amp-layout#readme",
+  "keywords": [
+    "react",
+    "amp",
+    "layout",
+    "css",
+    "responsive"
+  ],
+  "author": {
+    "name": "nerdlabs",
+    "email": "nerds@nerdlabs.it"
+  },
+  "contributors": [
+    {
+      "name": "Bjoern Brauer",
+      "email": "zaubernerd@nerdlabs.it"
+    }
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "0.13.0",
+    "babel": "6.5.2",
+    "babel-cli": "6.6.5",
+    "babel-preset-es2015": "6.6.0",
+    "babel-preset-react": "6.5.0",
+    "babel-preset-stage-0": "6.5.0",
+    "babel-register": "6.7.2"
+  },
+  "peerDependencies": {
+    "react": "0.14"
+  }
+}
