@@ -1,0 +1,86 @@
+<!DOCTYPeE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>react-amp-layout examples</title>
+	<script src="https://fb.me/react-0.14.7.js"></script>
+	<script src="https://fb.me/react-dom-0.14.7.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.24/system.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+</head>
+<body>
+	<div id="react-root"></div>
+
+<style>
+* {
+	box-sizing: border-box;
+}
+.example {
+	border: 2px dotted gray;
+	margin: 16px 0;
+}
+
+h1 {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.layout-example {
+	padding: 16px;
+	color: white;
+	background-color: teal;
+}
+
+.fill-example {
+	position: relative;
+	width: 100%;
+	height: 10vh;
+}
+</style>
+<script type="text/babel">
+System.set('react', System.newModule(window.React));
+System.config({
+	baseUrl: '../source/',
+	defaultJSExtensions: true,
+	transpiler: 'babel'
+});
+System.import('../source/index.js').then(({Container, Fill, Fixed, FixedHeight, NoDisplay, Responsive, default: Layout}) => {
+	ReactDOM.render(
+		<div>
+			<div className="container-example example">
+				<h1>Example of: container</h1>
+				<Container className="container layout-example">takes as much space as its children (regular 'div' behaviour)</Container>
+			</div>
+			<div className="fill-example example">
+				<h1>Example of: fill</h1>
+				<Fill className="fill layout-example">takes all available space on both axis</Fill>
+			</div>
+			<div className="fixed-example example">
+				<h1>Example of: fixed</h1>
+				<Fixed className="fixed layout-example" width="500px" height="250px">has fixed dimensions 500px * 250px</Fixed>
+			</div>
+			<div className="fixed-height-example example">
+				<h1>Example of: fixed-height</h1>
+				<FixedHeight className="fixed-height layout-example" height="8vh">has a fixed height of 8vh but takes all available width</FixedHeight>
+			</div>
+			<div className="nodisplay-example example">
+				<h1>Example of: nodisplay</h1>
+				<NoDisplay className="nodisplay layout-example">nodisplay</NoDisplay>
+			</div>
+			<div className="responsive-example example">
+				<h1>Example of: responsive</h1>
+				<Responsive className="responsive layout-example" width="16" height="9">has an aspect ratio of 16:9</Responsive>
+			</div>
+			<div className="responsive-example example">
+				<h1>Example of: responsive with Layout component</h1>
+				<Layout type="responsive" className="responsive layout-example" width="16" height="9">has an aspect ratio of 16:9</Layout>
+			</div>
+		</div>,
+		document.getElementById('react-root')
+	);
+}).catch((err) => {
+	console.error('Error while loading scripts!', err);
+});
+</script>
+</body>
+</html>
