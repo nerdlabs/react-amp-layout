@@ -9,9 +9,16 @@
   "scripts": {
     "clean": "rm -rf distribution",
     "prepare": "mkdir -p distribution",
+    "prebuild": "npm run clean && npm run prepare",
     "build": "babel source --out-dir distribution",
-    "watch": "npm run build -- --watch",
-    "test": "ava"
+    "test": "ava",
+    "release": "npm version $(conventional-recommended-bump -p angular)",
+    "push": "export version=$(cat .git/VERSION.tmp); export message=$(cat .git/COMMITMSG.tmp); git push && git push --tags && hub release create $version --message=\"${version}\n${message}\" && npm publish",
+    "postpush": "rm .git/VERSION.tmp .git/COMMITMSG.tmp",
+    "changelog": "conventional-changelog -p angular -sui changelog.md",
+    "preversion": "npm run build && npm run test && npm run changelog",
+    "version": "git add . && conventional-changelog -p angular > .git/COMMITMSG.tmp && conventional-changelog -n .version.js > .git/VERSION.tmp",
+    "postversion": "export version=$(cat .git/VERSION.tmp); export message=$(cat .git/COMMITMSG.tmp); git tag -d $version && git commit --amend -m \"chore(release): ${version}\n${message}\" && git tag -a $version -m \"${message}\""
   },
   "ava": {
     "files": [
@@ -60,6 +67,8 @@
     "babel-preset-react": "6.5.0",
     "babel-preset-stage-0": "6.5.0",
     "babel-register": "6.7.2",
+    "conventional-changelog-cli": "1.1.1",
+    "conventional-recommended-bump": "0.1.2",
     "react-addons-test-utils": "0.14.7"
   },
   "peerDependencies": {
