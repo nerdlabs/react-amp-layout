@@ -3,20 +3,21 @@ import test from 'ava';
 import render from './_util-render';
 
 import {Responsive} from '../source/';
+import Base from '../source/base';
 
-test('Responsive renders', t => {
+test('<Responsive /> renders', t => {
 	const vdom = render(<Responsive />);
 
 	{
-		const it = `should render an element of type div`;
+		const it = `should render the <Base /> component`;
 		const actual = vdom.type;
-		const expected = 'div';
+		const expected = Base;
 
 		t.is(actual, expected, it);
 	}
 
 	{
-		const it = `should render a child div used stretch element`;
+		const it = `should render a child div used as stretch element`;
 		const actual = vdom.props.children.type;
 		const expected = 'div';
 
@@ -24,33 +25,21 @@ test('Responsive renders', t => {
 	}
 });
 
-test('Responsive renders props passed to component', t => {
-	const vdom = render(
-		<Responsive className="test" style={{color: 'red'}} />
-	);
+test('<Responsive /> passes `props` to <Base />', t => {
+	const vdom = render(<Responsive className='test' />);
 
-	{
-		const it = `should have a className of "test"`;
-		const actual = vdom.props.className;
-		const expected = 'test';
+	const it = `should have a className of 'test'`;
+	const actual = vdom.props.className;
+	const expected = 'test';
 
-		t.is(actual, expected, it);
-	}
-
-	{
-		const it = `should set the style prop correctly`;
-		const actual = vdom.props.style.color;
-		const expected = 'red';
-
-		t.same(actual, expected, it);
-	}
+	t.is(actual, expected, it);
 });
 
-test('Responsive renders default style for wrapper and stretch element', t => {
+test('<Responsive /> renders default style for wrapper and stretch element', t => {
 	const vdom = render(<Responsive />);
 
 	{
-		const it = `should set position of wrapper to "relative"`;
+		const it = `should set position of wrapper to 'relative'`;
 		const actual = vdom.props.style.position;
 		const expected = 'relative';
 
@@ -80,9 +69,9 @@ test('Responsive renders default style for wrapper and stretch element', t => {
 	}
 });
 
-test('Responsive calculates padding-bottom for wrapper', t => {
+test('<Responsive /> calculates padding-bottom for wrapper', t => {
 	const vdom = render(
-		<Responsive width="16" height="9" />
+		<Responsive width='16' height='9' />
 	);
 
 	const it = `should have an aspect ratio of 56.25%`;

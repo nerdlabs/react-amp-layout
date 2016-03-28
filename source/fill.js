@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Base from './base';
 
 const defaultStyle = {
 	display: 'block',
@@ -10,11 +11,9 @@ const defaultStyle = {
 	right: 0
 };
 
-
-const Fill = ({ className, style, children, ...props}) => {
+const Fill = ({ style, children, ...props}) => {
 	return (
-		<div
-			className={className}
+		<Base
 			style={{
 				...defaultStyle,
 				...style
@@ -22,13 +21,12 @@ const Fill = ({ className, style, children, ...props}) => {
 			{...props}
 			>
 			{children}
-		</div>
+		</Base>
 	);
 };
 
 Fill.propTypes = {
 	children: React.PropTypes.node,
-	className: React.PropTypes.string,
 	style: React.PropTypes.object
 };
 

@@ -1,10 +1,9 @@
 import * as React from 'react';
+import Base from './base';
 
-
-const FixedHeight = ({ children, className, height, style, ...props}) => {
+const FixedHeight = ({ children, height, style, ...props}) => {
 	return (
-		<div
-			className={className}
+		<Base
 			style={{
 				height,
 				...style
@@ -12,13 +11,12 @@ const FixedHeight = ({ children, className, height, style, ...props}) => {
 			{...props}
 			>
 			{children}
-		</div>
+		</Base>
 	);
 };
 
 FixedHeight.propTypes = {
 	children: React.PropTypes.node,
-	className: React.PropTypes.string,
 	height: React.PropTypes.oneOfType([
 		React.PropTypes.number,
 		React.PropTypes.string

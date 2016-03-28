@@ -3,43 +3,30 @@ import test from 'ava';
 import render from './_util-render';
 
 import {Container} from '../source/';
+import Base from '../source/base';
 
-test('Container renders', t => {
+test('<Container /> renders', t => {
 	const vdom = render(<Container />);
 
-	const it = `should render an element of type div`;
+	const it = `should render the <Base /> component`;
 	const actual = vdom.type;
-	const expected = 'div';
+	const expected = Base;
 
 	t.is(actual, expected, it);
 });
 
-test('Container renders props passed to component', t => {
-	const vdom = render(
-		<Container className="test" style={{color: 'red'}} />
-	);
+test('<Container /> passes `props` to <Base />', t => {
+	const vdom = render(<Container className='test' />);
 
-	{
-		const it = `should have a className of "test"`;
-		const actual = vdom.props.className;
-		const expected = 'test';
+	const it = `should have a className of 'test'`;
+	const actual = vdom.props.className;
+	const expected = 'test';
 
-		t.is(actual, expected, it);
-	}
-
-	{
-		const it = `should set the style prop correctly`;
-		const actual = vdom.props.style.color;
-		const expected = 'red';
-
-		t.same(actual, expected, it);
-	}
+	t.is(actual, expected, it);
 });
 
-test('Container renders children passed into component', t => {
-	const vdom = render(
-		<Container><i></i></Container>
-	);
+test('<Container /> passes `children` to <Base />', t => {
+	const vdom = render(<Container><i></i></Container>);
 
 	const it = `should render children`;
 	const actual = vdom.props.children;

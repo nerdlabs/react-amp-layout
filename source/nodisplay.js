@@ -1,14 +1,13 @@
 import * as React from 'react';
+import Base from './base';
 
 const defaultStyle = {
 	display: 'none'
 };
 
-
-const NoDisplay = ({ className, style, children, ...props}) => {
+const NoDisplay = ({ style, children, ...props}) => {
 	return (
-		<div
-			className={className}
+		<Base
 			style={{
 				...defaultStyle,
 				...style
@@ -16,13 +15,12 @@ const NoDisplay = ({ className, style, children, ...props}) => {
 			{...props}
 			>
 			{children}
-		</div>
+		</Base>
 	);
 };
 
 NoDisplay.propTypes = {
 	children: React.PropTypes.node,
-	className: React.PropTypes.string,
 	style: React.PropTypes.object
 };
 

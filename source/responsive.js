@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Base from './base';
 
 const wrapperStyle = {
 	position: 'relative',
@@ -13,29 +14,25 @@ const stretchStyle = {
 	right: 0
 };
 
-
-const Responsive = ({ children, className, height, style, width, ...props}) => {
+const Responsive = ({ children, height, style, width, ...props}) => {
 	return (
-		<div
-			className={className}
+		<Base
 			style={{
 				...wrapperStyle,
 				paddingBottom: `${(height / width) * 100}%`,
 				...style
 			}}
-			{...props}>
-			<div
-				style={stretchStyle}
-				>
+			{...props}
+			>
+			<div style={stretchStyle}>
 				{children}
 			</div>
-		</div>
+		</Base>
 	);
 };
 
 Responsive.propTypes = {
 	children: React.PropTypes.node,
-	className: React.PropTypes.string,
 	height: React.PropTypes.oneOfType([
 		React.PropTypes.number,
 		React.PropTypes.string

@@ -3,14 +3,15 @@ import test from 'ava';
 import render from './_util-render';
 
 import {Fixed} from '../source/';
+import Base from '../source/base';
 
-test('Fixed renders', t => {
+test('<Fixed /> renders', t => {
 	const vdom = render(<Fixed />);
 
 	{
-		const it = `should render an element of type div`;
+		const it = `should render the <Base /> component`;
 		const actual = vdom.type;
-		const expected = 'div';
+		const expected = Base;
 
 		t.is(actual, expected, it);
 	}
@@ -24,32 +25,18 @@ test('Fixed renders', t => {
 	}
 });
 
-test('Fixed renders props passed to component', t => {
-	const vdom = render(
-		<Fixed className="test" style={{color: 'red'}} />
-	);
+test('<Fixed /> passes `props` to <Base />', t => {
+	const vdom = render(<Fixed className='test' />);
 
-	{
-		const it = `should have a className of "test"`;
-		const actual = vdom.props.className;
-		const expected = 'test';
+	const it = `should have a className of 'test'`;
+	const actual = vdom.props.className;
+	const expected = 'test';
 
-		t.is(actual, expected, it);
-	}
-
-	{
-		const it = `should set the style props`;
-		const actual = vdom.props.style.color;
-		const expected = 'red';
-
-		t.same(actual, expected, it);
-	}
+	t.is(actual, expected, it);
 });
 
-test('Fixed renders children passed into component', t => {
-	const vdom = render(
-		<Fixed><i></i></Fixed>
-	);
+test('<Fixed /> passes `children` to <Base />', t => {
+	const vdom = render(<Fixed><i></i></Fixed>);
 
 	const it = `should render children`;
 	const actual = vdom.props.children;
@@ -58,8 +45,8 @@ test('Fixed renders children passed into component', t => {
 	t.same(actual, expected, it);
 });
 
-test('Fixed renders width/height props as style', t => {
-	const vdom = render(<Fixed width={100} height="50%" />);
+test('<Fixed /> renders width/height props as style', t => {
+	const vdom = render(<Fixed width={100} height='50%' />);
 
 	{
 		const it = `should set style.width to 100`;
@@ -70,7 +57,7 @@ test('Fixed renders width/height props as style', t => {
 	}
 
 	{
-		const it = `should set style.height to "50%"`;
+		const it = `should set style.height to '50%'`;
 		const actual = vdom.props.style.height;
 		const expected = '50%';
 

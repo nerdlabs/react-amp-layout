@@ -1,14 +1,13 @@
 import * as React from 'react';
+import Base from './base';
 
 const defaultStyle = {
 	display: 'inline-block'
 };
 
-
-const Fixed = ({ children, className, height, style, width, ...props}) => {
+const Fixed = ({ children, height, style, width, ...props}) => {
 	return (
-		<div
-			className={className}
+		<Base
 			style={{
 				...defaultStyle,
 				height,
@@ -18,13 +17,12 @@ const Fixed = ({ children, className, height, style, width, ...props}) => {
 			{...props}
 			>
 			{children}
-		</div>
+		</Base>
 	);
 };
 
 Fixed.propTypes = {
 	children: React.PropTypes.node,
-	className: React.PropTypes.string,
 	height: React.PropTypes.oneOfType([
 		React.PropTypes.number,
 		React.PropTypes.string
