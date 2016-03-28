@@ -1,6 +1,6 @@
 {
   "name": "react-amp-layout",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The AMP layout system ported to React.js as a couple of easy to use components.",
   "main": "distribution/index.js",
   "files": [
