@@ -16,18 +16,22 @@ const typeMap = {
 	responsive: Responsive
 };
 
-const determineType = ({ height, heights, sizes, width }) => {
+const determineType = ({ height, heights, sizes, type, width }) => {
+	if (type && typeof typeMap[type] !== 'undefined') {
+		return typeMap[type];
+	}
+
 	const hasHeight = typeof height !== 'undefined';
 	const hasHeights = typeof heights !== 'undefined';
 	const hasSizes = typeof sizes !== 'undefined';
 	const hasWidth = typeof width !== 'undefined';
 
-	if (!hasWidth && !hasHeight) {
+	if (!hasHeight && !hasWidth) {
 		return Container;
-	} else if ((hasWidth || hasHeight) && (hasSizes || hasHeights)) {
-		return Responsive;
 	} else if (hasHeight && (!hasWidth || width === 'auto')) {
 		return FixedHeight;
+	} else if (hasHeight && hasWidth && (hasHeights || hasSizes)) {
+		return Responsive;
 	} else {
 		return Fixed;
 	}
@@ -35,7 +39,7 @@ const determineType = ({ height, heights, sizes, width }) => {
 
 
 const Layout = ({ children, className, style, type, ...props}) => {
-	const Component = (type && typeMap[type]) || determineType(props);
+	const Component = determineType(props);
 	return (
 		<Component
 			className={className}
