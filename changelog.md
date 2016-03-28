@@ -1,5 +1,5 @@
-<a name="Unreleased"></a>
-# [Unreleased](https://github.com/nerdlabs/react-amp-layout/compare/v0.2.0...38c1077) (2016-03-28)
+<a name="0.2.1"></a>
+# 0.2.1 (2016-03-28)
 
 
 ### Bug Fixes

@@ -15,7 +15,7 @@
     "release": "npm version $(conventional-recommended-bump -p angular)",
     "push": "export version=$(cat .git/VERSION.tmp); export message=$(cat .git/COMMITMSG.tmp); git push && git push --tags && hub release create $version --message=\"${version}\n${message}\" && npm publish",
     "postpush": "rm .git/VERSION.tmp .git/COMMITMSG.tmp",
-    "changelog": "conventional-changelog -p angular -sui changelog.md",
+    "changelog": "conventional-changelog -p angular -si changelog.md",
     "preversion": "npm run build && npm run test && npm run changelog",
     "version": "git add . && conventional-changelog -p angular > .git/COMMITMSG.tmp && conventional-changelog -n .version.js > .git/VERSION.tmp",
     "postversion": "export version=$(cat .git/VERSION.tmp); export message=$(cat .git/COMMITMSG.tmp); git tag -d $version && git commit --amend -m \"chore(release): ${version}\n${message}\" && git tag -a $version -m \"${message}\""
