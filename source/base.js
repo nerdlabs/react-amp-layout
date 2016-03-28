@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const Container = ({ style, children, ...props}) => {
+const Base = ({ style, children, ...props}) => {
 	return (
 		<div
 			style={style}
@@ -11,9 +11,9 @@ const Container = ({ style, children, ...props}) => {
 	);
 };
 
-Container.propTypes = {
+Base.propTypes = {
 	children: React.PropTypes.node,
 	style: React.PropTypes.object
 };
 
-export default Container;
+export default Base;
