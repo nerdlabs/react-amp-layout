@@ -68,7 +68,7 @@
     "babel-preset-stage-0": "6.5.0",
     "babel-register": "6.7.2",
     "conventional-changelog-cli": "1.1.1",
-    "conventional-recommended-bump": "0.1.2",
+    "conventional-recommended-bump": "0.3.0",
     "react-addons-test-utils": "0.14.7"
   },
   "peerDependencies": {
