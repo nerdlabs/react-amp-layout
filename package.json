@@ -67,7 +67,7 @@
     "babel-preset-react": "6.5.0",
     "babel-preset-stage-0": "6.5.0",
     "babel-register": "6.7.2",
-    "conventional-changelog-cli": "1.1.1",
+    "conventional-changelog-cli": "1.2.0",
     "conventional-recommended-bump": "0.1.2",
     "react-addons-test-utils": "0.14.7"
   },
